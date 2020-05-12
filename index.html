@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Software Engineering ToolBox</title>
+
+    <!--Google Fonts-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Linking -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!--CSS Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="css/style-sheet.css" />
+    <link rel="stylesheet" href="css/designPatterns.css" />
+  </head>
+  <body>
+    <a name="top"></a>
+
+    <!-- Top Section -->
+    <section class="topSection">
+      <nav class="navbar navbar-expand-lg navbar-light text-center">
+        <div class="container text-center">
+          <a class="navbar-brand text-center" href="#"></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto mx-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Design Patterns </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="architecture.html">Architectural Styles</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="software.html">Software Reliability</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="diagrams.html">UML Diagrams</a>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <!-- Wrapper Div -->
+    <div class="wrapper">
+      <!--Design Patterns - Creational -->
+      <section class="creationalSection">
+        <div class="container">
+          <div class="row titleSet">
+            <div class="col-sm-12">
+              <h1 class="titles">Design Patterns</h1>
+              <h2 class="subtitles">Creational</h2>
+            </div>
+          </div>
+
+          <div class="cards justify-content-center">
+          <!-- Abstract Factory Method -->
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
+
+            <!-- Factory Method -->
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Factory Method</h5>
+                  <p class="card-text">
+                    This pattern creates objects without exposing the creation
+                    logic of each object.
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="factory" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Factory Modal-->
+            <div class="modal-frame" id="factoryModal">
+              <div class="modal-content">
+                <span class="close-modal">&times;</span>
+
+                <div name="redirection top bar">
+                  <a
+                    href="#factoryDiagram"
+                    class="modal-btn btn btn-sm btn-dark"
+                    >UML Diagram</a
+                  >
+                  <a href="#factoryCode" class="modal-btn btn btn-sm btn-info"
+                    >Code Example</a
+                  >
+                  <a
+                    href="#factorySlide"
+                    class="modal-btn btn btn-sm btn-primary"
+                    >Relevant Slides</a
+                  >
+                </div>
+                <h2 style="padding-top: 5%;">Factory</h2>
+                <div>
+                  This creational design pattern creates objects without
+                  exposing the creation logic of each object, in which the
+                  create method is static
+                  <div class="modal-section" id="factoryDiagram">
+                    <h4 class="modal-header">Diagram</h4>
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/4/43/W3sDesign_Factory_Method_Design_Pattern_UML.jpg"
+                      alt="factory diagram"
+                    />
+                  </div>
+                  <div class="modal-section" id="factoryCode">
+                    <h4 class="modal-header">Code Example</h4>
+
+                    <pre rel="java">
+                      <p>The Client Class</p>
+                      <code class="java">
+                        public class Client {
+                          public static void main(String[] args) {
+                            MagicalComputerFactory.create("Macbook");
+                            MagicalComputerFactory.create("Windows");
+                          }
+                        }                        
+                      </code>
+                    </pre>
+
+                    <pre rel="java">
+                      <p>The Computer Interface</p>
+                      <code class='java'>
+                        public interface Computer {
+                          //we can specify the properties of a computer
+                        }
+                      </code>
+                    </pre>
+
+                    <pre rel="java">
+                      <p>Class Macbook, a concrete implementation of the interface</p>
+                      <code class="java">
+                        public class Macbook implements Computer {
+                          //we can specify the properties of a macbook
+                        }
+                      </code>
+                    </pre>
+                    <pre rel="java">
+                      <p>Class WindowsPc, a concrete implementation of the interface</p>
+                      <code class="java">
+                        public class WindowsPC implements Computer {
+                          //we can specify the properties of a windows pc
+                        }
+                      </code>
+                    </pre>
+                    <pre rel="java">
+                      <p>The Factory class</p>
+                      <code class="java">
+                        //factory method hides the type of object and the process that is used to create the object
+                        public class  MagicalComputerFactory implements Computer{
+	                        public static Computer create(String type) {
+		                        switch(type) {
+		                          case "Macbook":
+			                          System.out.println("Created a macbook");
+			                          return new Macbook();
+		
+		                          default:
+			                          System.out.println("Created a windows pc");
+			                          return new WindowsPC();
+		                          }
+	                        }
+                        }
+                      </code>
+                    </pre>
+                  </div>
+
+                  <div class="modal-section" id="factorySlide">
+                    <h4 class="modal-header">Relevant PDF pages</h4>
+                    . . .
+                  </div>
+                  <a class="card-button" href="#factoryDiagram">Back to top</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Singleton -->
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Singleton</h5>
+                  <p class="card-text">
+                    This creational design pattern creates one and only one
+                    instance of a class
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="singleton" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Singleton modal-->
+            <div class="modal-frame" id="singletonModal">
+              <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div name="redirection top bar">
+                  <a
+                    href="#singletonDiagram"
+                    class="modal-btn btn btn-sm btn-dark"
+                    >UML Diagram</a
+                  >
+                  <a href="#singletonCode" class="modal-btn btn btn-sm btn-info"
+                    >Code Example</a
+                  >
+                  <a
+                    href="#singletonSlide"
+                    class="modal-btn btn btn-sm btn-primary"
+                    >Relevant Slides</a
+                  >
+                </div>
+                <h2 style="padding-top: 5%;">Singleton</h2>
+                <div>
+                  This creational design pattern creates one and only one
+                  instance of a class. It is flexible enough to allow the
+                  creation of N number of objects", allows this object to be
+                  expanded using subclassing without changing client program.
+                  But, misuse results in the object behaving like a global
+                  variable and might cause trouble in asynchronous processes,
+                  i.e. dealing with counters
+                  <div class="modal-section" id="singletonDiagram">
+                    <h4 class="modal-header">Diagram</h4>
+                    <img
+                      src="https://www.tutorialspoint.com/design_pattern/images/singleton_pattern_uml_diagram.jpg"
+                      alt="singleton diagram"
+                    />
+                  </div>
+                  <div class="modal-section" id="singletonCode">
+                    <h4 class="modal-header">Code Example</h4>
+                    <pre rel="java">
+                        <p>The Client Class</p>
+                        <code class="java">
+                          public class Client {
+                              //A singleton implementation to create stars
+                            public static void main(String [] args) {
+                              Star star = Star.getStar();
+                              if(star != null) {
+                                System.out.println("A star appeared in the solar system!");
+                              }
+                            }
+                          }
+                        </code>
+                      </pre>
+
+                    <pre rel="java">
+                        <p>The Singleton Star</p>
+                        <code class="java">
+                          public class Star {
+                              //there can only be one star in this solar system!
+                            private Star() {} 
+                            
+                            private static Star star = new Star();
+                            
+                            public static Star getStar() {
+                              if(star == null) {
+                                star = new Star();
+                              }
+                              
+                              return star;
+                            }
+                          }
+                        </code>
+                      </pre>
+                  </div>
+                  <div class="modal-section" id="singletonSlide">
+                    <h4 class="modal-header">Relevant PDF pages</h4>
+                    . . .
+                  </div>
+                  <a class="card-button" href="#singletonDiagram"
+                    >Back to top</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ****** -->
+      <!-- Design Patterns - Structural -->
+      <section class="structuralSection">
+        <div class="container">
+          <div class="row titleSet">
+            <div class="col-sm-12">
+              <h2 class="subtitles">Structural</h2>
+            </div>
+          </div>
+
+          <div class="cards justify-content-center">
+          <!-- Adapter -->
+          <div class="row row-cols-1 row-cols-md-3 justify-content-center">
+            
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Adapter</h5>
+                  <p class="card-text">
+                    Allows client code to access a class different from the
+                    class it expects to access
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="adapter" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Adapter  Modal-->
+            <div class="modal-frame" id="adapterModal">
+              <div class="modal-content">
+                <span class="close-modal">&times;</span>
+
+                <div name="redirection top bar">
+                  <a
+                    href="#adapterDiagram"
+                    class="modal-btn btn btn-sm btn-dark"
+                    >UML Diagram</a
+                  >
+                  <a href="#adapterCode" class="modal-btn btn btn-sm btn-info"
+                    >Code Example</a
+                  >
+                  <a
+                    href="#adapterSlide"
+                    class="modal-btn btn btn-sm btn-primary"
+                    >Relevant Slides</a
+                  >
+                </div>
+                <h2 style="padding: 5%;">Adapter</h2>
+                <div>
+                  This is a structural pattern. Allows client code to access a
+                  class different from the class it expects to access; contains
+                  'Target', 'Adapter', and 'Adaptee'. No need to change the
+                  object or the client code, replace classes with different
+                  interfaces, reusability and flexibility, can use polymorphism,
+                  reduces client code complicatedness, but may require a chain
+                  of adapters (just sometimes...)
+
+                  <div class="modal-section" id="adapterDiagram">
+                    <h4 class="modal-header">Diagram</h4>
+                    <img
+                      alt="adapter diagram"
+                      src="https://upload.wikimedia.org/wikipedia/commons/e/e5/W3sDesign_Adapter_Design_Pattern_UML.jpg"
+                    />
+                  </div>
+                  <div class="modal-section" id="adapterCode">
+                    <h4 class="modal-header">Code Example</h4>
+                    <pre rel="java">
+                      <p>The Client Class</p>
+                      <code class="java">
+                        public class Client {
+                          //the purpose is that we do not have enough memory to create humans, so we now use ape instead
+                          public static void main(String [] args) {
+                            Human human = new Adapter(new ApeKing());
+                            human.talk();
+                          }
+                        }
+                      </code>
+                    </pre>
+                    <pre rel="java">
+                      <p>Human Interface</p>
+                      <code class='java'>
+                        public interface Human {
+                          public abstract void talk();
+                        }
+                      </code>
+                    </pre>
+
+                    <pre rel="java">
+                      <p>Concrete implementation of the Human Interface</p>
+                      <code class='java'>
+                        public class USCitizen implements Human {
+
+                          public void talk() {
+                            System.out.println("Humans talking");
+                          }
+                        }
+                      </code>
+                    </pre>
+
+                    <pre rel="java">
+                      <p>The Ape Interface</p>
+                      <code class='java'>
+                        public interface Ape {
+                          abstract public void extremities();
+                          public abstract void groan();
+                        }
+                        
+                      </code>
+                  </pre>
+
+                    <pre rel="java">
+                    <p>Concrete Implementation of Ape</p>
+                    <code class='java'>
+                      public class ApeKing implements Ape{
+
+                        public void extremities() {
+                          System.out.println("2 legs and 2 arms");
+                        }
+                      
+                        public void groan() {
+                          System.out.println("Primates making sounds");	
+                        }
+                      }
+                    </code>
+                </pre>
+
+                    <pre rel="java">
+                  <p>The ape to human adapter</p>
+                  <code class='java'>
+                    //adapting apes to humans
+                    public class Adapter implements Human{
+                      
+                      private Ape ape;
+                      
+                      public Adapter(Ape ape) {
+                        this.ape = ape;
+                      }
+                      
+                      //the method for humans is now being used for an object of ape, thus adapting a human to an ape.
+                      public void talk() {
+                        ape.groan();
+                      }
+                    }
+                  </code>
+              </pre>
+                  </div>
+
+                  <div class="modal-section" id="adapterSlide">
+                    <h4 class="modal-header">Relevant PDF pages</h4>
+                    . . .
+                  </div>
+                  <a class="card-button" href="#adapterDiagram">Back to top</a>
+                </div>
+              </div>
+            </div>
+            <!-- Bridge -->
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Bridge</h5>
+                  <p class="card-text">
+                    Allows you to separate abstraction from implementation
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="bridge" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Bridge Modal-->
+            <div class="modal-frame" id="bridgeModal">
+              <div class="modal-content">
+                <span class="close-modal">&times;</span>
+
+                <div name="redirection top bar">
+                  <a href="#bridgeDiagram" class="modal-btn btn btn-sm btn-dark"
+                    >UML Diagram</a
+                  >
+                  <a href="#bridgeCode" class="modal-btn btn btn-sm btn-info"
+                    >Code Example</a
+                  >
+                  <a
+                    href="#bridgeSlide"
+                    class="modal-btn btn btn-sm btn-primary"
+                    >Relevant Slides</a
+                  >
+                </div>
+                <h2 style="padding: 5%;">Bridge</h2>
+                <div>
+                  This is a structural design pattern. Allows you to separate
+                  abstraction from implementation; encapsulates an
+                  implementation class inside an abstract class", "decouples an
+                  abstraction and implementation", "can be used with abstract
+                  factory pattern", "allows abstraction and implementation to
+                  vary independently"
+                  <div class="modal-section" id="bridgeDiagram">
+                    <h4 class="modal-header">Diagram</h4>
+                    <img
+                      alt="bridge diagram"
+                      src="https://media.geeksforgeeks.org/wp-content/uploads/Bridge_Design.png"
+                    />
+                  </div>
+                  <div class="modal-section" id="bridgeCode">
+                    <h4 class="modal-header">Code Example</h4>
+
+                    <pre rel="java">
+                      <p>The Client Class</p>
+                      <code class='java'>
+                        public class Client {
+                          public static void main(String [] args) {
+                            Athelete john = new WeightLifter(new WorkOut(), new Recover());
+                            john.train();
+                            Athelete serena = new Swimmer (new WorkOut(), new Recover());
+                            serena.train();
+                          }
+                        }
+                        
+                      </code>
+                  </pre>
+
+                    <pre rel="java">
+                    <p>Abstract Athelete Class</p>
+                    <code class='java'>
+                      public abstract class Athelete {
+                        protected Training training1;
+                        protected Training training2;
+                        
+                        protected Athelete(Training training1, Training training2) {
+                          this.training1 = training1;
+                          this.training2 = training2;
+                        }
+                        
+                        abstract public void train();
+                      }
+                    </code>
+                </pre>
+
+                    <pre rel="java">
+                  <p>Interface Training</p>
+                  <code class='java'>
+                    public interface Training {
+
+                      abstract public void train();
+                    }
+
+                  </code>
+              </pre>
+
+                    <pre rel="java">
+                          <p>WeightLifter Class</p>
+                          <code class='java'>
+                            //this is a refined abstraction
+                            public class WeightLifter extends Athelete{
+                            
+                              protected WeightLifter(Training training1, Training training2) {
+                                super(training1, training2);
+                              }
+                            
+                              @Override
+                              public void train() {
+                                System.out.println("Weight Lifter John: ");
+                                training1.train();
+                                training2.train();
+                              }
+                            }
+                          </code>
+                      </pre>
+
+                    <pre rel="java">
+                        <p>Swimmer Class</p>
+                        <code class='java'>
+                          //another refined abstraction
+                          public class Swimmer extends Athelete{
+                          
+                            protected Swimmer(Training training1, Training training2) {
+                              super(training1, training2);
+                            }
+                          
+                            @Override
+                            public void train() {
+                              
+                              System.out.println("Swimmer Serena: ");
+                              training1.train();
+                              training2.train();
+                            }
+                          }
+                        </code>
+                    </pre>
+
+                    <pre rel="java">
+                      <p>WorkOut Class</p>
+                      <code class='java'>
+                        //this is a concrete implementor
+                        public class WorkOut implements Training{
+                        
+                          @Override
+                          public void train() {
+                            System.out.println("Worked out");
+                          }
+                        
+                        }
+                      </code>
+                  </pre>
+
+                    <pre rel="java">
+                    <p>Recover Class</p>
+                    <code class='java'>
+                      //this is another concrete implementor
+                      public class Recover implements Training{
+                      
+                        @Override
+                        public void train() {
+                          System.out.println("Taking a rest to recover");
+                        }
+                      }
+                    </code>
+                </pre>
+                  </div>
+                  <div class="modal-section" id="bridgeSlide">
+                    <h4 class="modal-header">Relevant PDF pages</h4>
+                    . . .
+                  </div>
+                  <a class="card-button" href="#bridgeDiagram">Back to top</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Composite -->
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Composite</h5>
+                  <p class="card-text">
+                    To execute operations on a bunch of objects as a whole
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="composite" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Composite Modal-->
+            <div class="modal-frame" id="compositeModal">
+              <div class="modal-content">
+                <span class="close-modal">&times;</span>
+
+                <div name="redirection top bar">
+                  <a
+                    href="#compositeDiagram"
+                    class="modal-btn btn btn-sm btn-dark"
+                    >UML Diagram</a
+                  >
+                  <a href="#compositeCode" class="modal-btn btn btn-sm btn-info"
+                    >Code Example</a
+                  >
+                  <a
+                    href="#compositeSlide"
+                    class="modal-btn btn btn-sm btn-primary"
+                    >Relevant Slides</a
+                  >
+                </div>
+                <h2 style="padding: 5%;">Composite</h2>
+                <div>
+                  This is a structural design pattern. To execute operations on
+                  a bunch of objects as a whole, ignores differences between
+                  compositions and individual objects, reduces memory usage, but
+                  hard to restrict the components of a composite.
+                  <div class="modal-section" id="compositeDiagram">
+                    <h4 class="modal-header">Diagram</h4>
+                    <img
+                      alt="composite diagram"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Composite_UML_class_diagram_%28fixed%29.svg/600px-Composite_UML_class_diagram_%28fixed%29.svg.png"
+                    />
+                  </div>
+                  <div class="modal-section" id="compositeCode">
+                    <h4 class="modal-header">Code Example</h4>
+
+                    <pre rel="java">
+                      <p>The Client Class</p>
+                      <code class='java'>
+                        public class Client {
+                          //these are League of Legend Character names
+                          public static void main(String [] args) {
+                            Champion ashe = new ADC("Ashe");
+                            Champion jhin = new ADC("Jhin");
+                            Champion yuumi = new Support("Yuumi");
+                            Champion leona  = new Support("Leona");
+                            
+                            Category ADCs = new Category();
+                            ADCs.addChamp(ashe);
+                            ADCs.addChamp(jhin);
+                            
+                            Category Supports = new Category();
+                            Supports.addChamp(yuumi);
+                            Supports.addChamp(leona);
+                            
+                            Category BotLanePairs = new Category();
+                            BotLanePairs.addChamp(ADCs);
+                            BotLanePairs.addChamp(Supports);
+                            
+                            BotLanePairs.showChamp();
+                          }
+                        }
+                      </code>
+                  </pre>
+
+                    
+
+                  <pre rel='java'>
+                    <p>The Champion Interface</p>
+                    <code class='java'>
+                      public interface Champion {
+                        abstract public void showChamp();
+                      }
+                    </code>
+                </pre>
+  
+
+                <pre rel='java'>
+                  <p>Categories Class</p>
+                  <code class='java'>
+                    import java.util.ArrayList;
+
+                    //this is a composite
+                    public class Category implements Champion {
+                    
+                      private ArrayList<Champion>list = new ArrayList<Champion>();
+                      @Override
+                      public void showChamp() {
+                        for(Champion c : list) {
+                          c.showChamp();
+                        }
+                        
+                      }
+                      public void addChamp(Champion c) {
+                        list.add(c);
+                      }
+                      public void removeChamp(Champion c) {
+                        list.remove(c);
+                      }
+                    
+                    }
+                  </code>
+              </pre>
+  
+
+              <pre rel='java'>
+                <p>Concrete Implementation of the interface</p>
+                <code class='java'>
+                  //this is a leaf
+                  public class ADC implements Champion{
+                    public String name;
+                    public ADC(String n) {
+                      this.name = n;
+                    }
+                    @Override
+                    public void showChamp() {
+                      System.out.println(name);
+                    }
+                  
+                  }
+                </code>
+            </pre>
+              
+
+            <pre rel='java'>
+              <p>Another Concrete/Leaf Class</p>
+              <code class='java'>
+                //this is another leaf
+                public class Support implements Champion{
+                  public String name;
+                  public Support(String n) {
+                    this.name = n;
+                  }
+                  @Override
+                  public void showChamp() {
+                    System.out.println(name);
+                    
+                  }
+                }                
+              </code>
+          </pre>
+
+                  </div>
+                  <div class="modal-section" id="compositeSlide">
+                    <h4 class="modal-header">Relevant PDF pages</h4>
+                    . . .
+                  </div>
+                  <a class="card-button" href="#compositeDiagram">Back to top</a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Facade Modal-->
+<div class="modal-frame" id="facadeModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <div name="redirection top bar">
+      <a href="#" class="modal-btn btn btn-sm btn-dark"
+        >UML Diagram</a
+      >
+      <a href="#" class="modal-btn btn btn-sm btn-info"
+        >Code Example</a
+      >
+      <a href="#" class="modal-btn btn btn-sm btn-primary"
+        >Relevant Slides</a
+      >
+    </div>
+    <h2 style="padding: 5%;">Coming Soon</h2>
+    <div class="modal-no-content"></div>
+  </div>
+</div>   
+            <!-- Proxy -->
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Proxy</h5>
+                  <p class="card-text">
+                    Creates a substitute/wrapper that steps in between the client and the subject they want to access
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="proxy" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+
+<!--Proxy Modal-->
+<div class="modal-frame" id="proxyModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <div name="redirection top bar">
+      <a href="#proxyDiagram" class="modal-btn btn btn-sm btn-dark"
+        >UML Diagram</a
+      >
+      <a href="#proxyCode" class="modal-btn btn btn-sm btn-info"
+        >Code Example</a
+      >
+      <a href="#proxySlide" class="modal-btn btn btn-sm btn-primary"
+        >Relevant Slides</a
+      >
+    </div>
+    <h2 style="padding: 5%;">Proxy</h2>
+    <div>
+      This is a structural design pattern. Creates a substitute/wrapper that steps in between the client and the subject they want to access. The Proxy class holds a reference to the real subject, can send messages back to client in lengthy processes, can provide additional functions, but introduces another layer of abstraction, might be troublesome if the client accesses the subject directly.
+      <div class="modal-section" id="proxyDiagram">
+        <h4 class="modal-header">Diagram</h4>
+        <img alt="proxy diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Proxy_pattern_diagram.svg/439px-Proxy_pattern_diagram.svg.png">
+
+      </div>
+      <div  class="modal-section" id="proxyCode">
+        <pre rel='java'>
+          <p>The Client CLass</p>
+          <code class='java'>
+            public class Client {
+                //an internet proxy as example
+              public static void main(String [] args) {
+                Proxy proxy = new Proxy();
+                try {
+                  proxy.connect("google.com");
+                  proxy.connect("random.com");
+                }catch(Exception e) {
+                  System.out.println(e.getMessage());
+                }
+              }
+            }
+          </code>
+      </pre>
+
+      <pre rel='java'>
+        <p>The Internet Interface</p>
+        <code class='java'>
+          public interface Internet {
+            abstract public void connect(String domain)throws Exception;
+          }
+        </code>
+    </pre>
+
+    <pre rel='java'>
+      <p>The Proxy Class</p>
+      <code class='java'>
+        import java.util.ArrayList;
+
+        public class Proxy implements Internet{
+          private static ArrayList<String> bannedSites = new ArrayList<String>();
+          private Internet internet = new RealInternet();
+          
+          static{
+            bannedSites.add("random.com");
+            bannedSites.add("shabi.com");
+        
+          }
+          @Override
+          public void connect(String domain) throws Exception{
+        
+            
+            if(bannedSites.contains(domain)) {
+              throw new Exception("Access Denied");
+            }
+            internet.connect(domain);
+            
+          }
+        }
+      </code>
+  </pre>
+
+  <pre rel='java'>
+    <p>Actually connects to the site</p>
+    <code class='java'>
+      public class RealInternet implements Internet{
+
+        public void connect(String domain) {
+          System.out.println("Connecting to : "+domain);
+        }
+      }
+    </code>
+</pre>
+
+      </div>
+      <div class="modal-section" id="proxySlide">
+        <h4 class="modal-header">Relevant PDF pages</h4>
+        . . .
+      </div>
+      <a class="card-button" href="#proxyDiagram">Back to top</a>
+    </div>
+  </div>
+</div>   
+
+
+
+      <!-- ****  -->
+      <!-- Design Patterns - Behavioural -->
+      <section class="behaviouralSection">
+        <div class="container">
+          <div class="row titleSet">
+            <div class="col-sm-12">
+              <h2 class="subtitles">Behavioural</h2>
+            </div>
+          </div>
+
+          <div class="cards justify-content-center">
+          <!-- Chain of Responsibility -->
+          <div class="row row-cols-1 row-cols-md-3 justify-content-center">
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Chain of Responsibility</h5>
+                  <p class="card-text">
+                    Enables one or more classes to handle a request
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="chain" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+<!--Chain Modal-->
+<div class="modal-frame" id="chainModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <div name="redirection top bar">
+      <a href="#chainDiagram" class="modal-btn btn btn-sm btn-dark"
+        >UML Diagram</a
+      >
+      <a href="#chainCode" class="modal-btn btn btn-sm btn-info"
+        >Code Example</a
+      >
+      <a href="#chainSlide" class="modal-btn btn btn-sm btn-primary"
+        >Relevant Slides</a
+      >
+    </div>
+    <h2 style="padding: 5%;">Chain of Responsibility</h2>
+    <div>
+      This is a behavioural design pattern. Enables one or more classes to handle a request, No need of specifying handler explicitly, "Reduces coupling", Allow dynamic adding or deleting members of the chain, Difficult to debug.
+      <div class="modal-section" id='chainDiagram'>
+        <h4 class="modal-header">
+          Diagram
+        </h4>
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/desigmpatternuml1.png" alt="chain diagram">
+      </div>
+      <div class="modal-section" id="chainCode">
+        <h4 class="modal-header">
+          Code Example
+        </h4>
+        <pre rel='java'>
+          <p>Client Class</p>
+          <code class='java'>
+            public class Client {
+              public static void main(String [] args) {
+                Handler h1 = new USDHandler(), h2 = new CADHandler(), h3 = new EURHandler();
+                h1.setSuccessor(h2);
+                h2.setSuccessor(h3);
+                
+                Currency [] currencies = {new Currency("CAD"), new Currency( "USD"), new Currency( "CNY"), new Currency( "JPY"), new Currency("EUR"), new Currency( "USD")};
+                for(Currency s : currencies) h1.handle(s);
+              }
+            }
+          </code>
+      </pre>
+
+      <pre rel='java'>
+        <p>Handler Interface</p>
+        <code class='java'>
+          public interface Handler {
+	
+            public abstract void setSuccessor(Handler h);
+            abstract public void handle(Currency money);
+            
+          }
+          
+        </code>
+    </pre>
+    <pre rel='java'>
+      <p>The Currency Class</p>
+      <code class='java'>
+        public class Currency {
+          String type;
+          public Currency(String type) {
+            this.type = type;
+          }
+          
+          public String getType() {
+            return type;
+          }
+        }
+      </code>
+  </pre>
+
+  <pre rel='java'>
+    <p>Concrete Handler 1</p>
+    <code class='java'>
+      public class CADHandler implements Handler{
+        private Handler h;
+        @Override
+        public void setSuccessor(Handler h) {
+          // TODO Auto-generated method stub
+          this.h = h;
+        }
+      
+        @Override
+        public void handle(Currency money) {
+          // TODO Auto-generated method stub
+          if(money.getType().contentEquals("CAD")) {
+            System.out.println("Handled");
+            return;
+          }
+          h.handle(money);
+        }
+      }
+    </code>
+</pre>
+<pre rel='java'>
+  <p>Concrete Handler 2</p>
+  <code class='java'>
+    public class EURHandler implements Handler {
+      private Handler h;
+      @Override
+      public void setSuccessor(Handler h) {
+        // TODO Auto-generated method stub
+        this.h = h;
+      }
+    
+      @Override
+      public void handle(Currency money) {
+        // TODO Auto-generated method stub
+        if(money.getType().contentEquals("EUR")) {
+          System.out.println("Handled");
+          return;
+        }
+        System.out.println("Enable to handle request");
+      }
+    }
+  </code>
+</pre>
+<pre rel='java'>
+  <p>Concrete Handler 3</p>
+  <code class='java'>
+    public class USDHandler implements Handler{
+
+      private Handler h;
+      @Override
+      public void setSuccessor(Handler h) {
+        this.h = h;
+        
+      }
+    
+      @Override
+      public void handle(Currency money) {
+        if(money.getType().contentEquals("USD")) {
+          System.out.println("Handled");
+          return;
+        }
+        h.handle(money);
+        
+      }
+    }
+  </code>
+</pre>
+
+      </div>
+      
+<div class="modal-section" id="chainSlide">
+  <h4 class="modal-header">Relevant PDF pages</h4>
+  . . .
+</div>
+<a class="card-button" href="#chainDiagram">Back to top</a>
+    </div>
+  </div>
+</div>  
+            <!-- Template -->
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Template</h5>
+                  <p class="card-text">
+                    Defines a general structure of an algorithm with the ability to change the logic in specific embodiments or cases
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="template" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Template Modal-->
+<div class="modal-frame" id="templateModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <div name="redirection top bar">
+      <a href="#templateDiagram" class="modal-btn btn btn-sm btn-dark"
+        >UML Diagram</a
+      >
+      <a href="#templateCode" class="modal-btn btn btn-sm btn-info"
+        >Code Example</a
+      >
+      <a href="#templateSlide" class="modal-btn btn btn-sm btn-primary"
+        >Relevant Slides</a
+      >
+    </div>
+    <h2 style="padding: 5%;">Template</h2>
+    <div>
+      This is a behavioural design pattern. Defines a general structure of an algorithm with the ability to change the logic in specific embodiments or cases, reveal of control, code re-use, use of subclasses to specify the behaviour of sub-steps of the main program.
+      <div class="modal-section" id="templateDiagram">
+        <h4 class="modal-header">Diagram</h4>
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/claasDia.jpg" alt="template diagram">
+      </div>
+
+      <div class="modal-section" id="templateCode"> 
+        <h4 class="modal-header">
+          Code Example
+        </h4>
+        <pre rel='java'>
+          <p>Client Class</p>
+          <code class='java'>
+            import java.util.Random;
+
+            public class Client {
+            
+              public static void main(String [] args) {
+                Random r = new Random();
+                SoftwareDeveloper John = new JuniorDeveloper(r.nextInt()*500, "Junior Front End Dev");
+                SoftwareDeveloper Joe = new SeniorDeveloper(r.nextInt()*500, "Senior Front End Dev");
+                
+                John.work();
+                John.interview();
+                John.getPaid();
+                Joe.work();
+                Joe.interview();
+                Joe.getPaid();
+              }
+            }
+          </code>
+      </pre>
+      <pre rel='java'>
+        <p>Template Class (A template for developers)</p>
+        <code class='java'>
+          public class SoftwareDeveloper {
+
+            int employeeID;
+            String jobTitle;
+            int pay = 50000;
+            public SoftwareDeveloper(int id, String jt) {
+              this.employeeID = id;
+              this.jobTitle = jt;
+            }
+            
+            public void work() {
+              System.out.println("Software Developer is coding....");
+            }
+            
+            public void interview() {
+              System.out.println(jobTitle+" is interviewing potential new hires");
+            }
+            
+            public void getPaid() {
+              System.out.println(jobTitle+" is getting paid "+pay);
+            }
+          }
+        </code>
+    </pre>
+    <pre rel='java'>
+      <p>Junior Developer</p>
+      <code class='java'>
+        public class JuniorDeveloper extends SoftwareDeveloper{
+
+          public JuniorDeveloper(int id, String jt) {
+            super(id, jt);
+          }
+        
+          public void interview() {
+            System.out.println("Junior Developer is not allowed to interview other people");
+          }
+        }
+      </code>
+  </pre>
+
+  <pre rel='java'>
+    <p>Senior Developer</p>
+    <code class='java'>
+      public class SeniorDeveloper extends SoftwareDeveloper{
+
+        public SeniorDeveloper(int id, String jt) {
+          super(id, jt);
+        }
+      
+        public void getPaid() {
+          System.out.println("Senior Developers get paid: $"+120000);
+        }
+      }
+      
+    </code>
+</pre>
+      </div>
+      <div class="modal-section" id="templateSlide">
+        <h4 class="modal-header">Relevant PDF pages</h4>
+        . . .
+      </div>
+      <a class="card-button" href="#templateDiagram">Back to top</a>
+      
+    </div>
+  </div>
+</div>   
+
+            <!-- Observer -->
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Observer</h5>
+                  <p class="card-text">
+                    A one to many dependencies; when one object changes state, all of its dependencies are notified and changed automatically
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="observer" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Observer Modal-->
+<div class="modal-frame" id="observerModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <div name="redirection top bar">
+      <a href="#observerDiagram" class="modal-btn btn btn-sm btn-dark"
+        >UML Diagram</a
+      >
+      <a href="#observerCode" class="modal-btn btn btn-sm btn-info"
+        >Code Example</a
+      >
+      <a href="#observerSlide" class="modal-btn btn btn-sm btn-primary"
+        >Relevant Slides</a
+      >
+    </div>
+    <h2 style="padding: 5%;">Observer</h2>
+    <div>
+      This is a behavioural design pattern. A one to many dependencies; when one object changes state, all of its dependencies are notified and changed automatically, loosely coupled between interacting objects, can be re-used independently of each other, no need to modify any classes to update or delete observers, Memory leak due to explicit registering and unregistering of observers.
+      <div class="modal-section" id="observerDiagram">
+        <h4 class="modal-header">Diagram</h4>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Observer_w_update.svg/500px-Observer_w_update.svg.png" alt="observer diagram">
+      </div>
+      <div class="modal-section" id="observerCode">
+        <h4 class="modal-header">
+          Code Example
+        </h4>
+        <pre rel='java'>
+          <p>Client Class</p>
+          <code class='java'>
+            public class Client {
+
+              public static void main(String [] args) {
+                UnemployedCSGraduates csg = new UnemployedCSGraduates();
+                
+                HeadHunter joe = new HeadHunter();
+                Recruiter facebook = new Recruiter();
+                Recruiter google = new Recruiter();
+                
+                csg.registerObserver(joe);
+                csg.registerObserver(facebook);
+                csg.registerObserver(google);
+                csg.notifyObserver();
+                csg.unregisterObserver(google);
+                csg.notifyObserver();
+              }
+            }
+          </code>
+      </pre>
+      <pre rel='java'>
+        <p>The Employer Interface</p>
+        <code class='java'>
+          //an entirely new interface to promote low coupling between subject and observer
+
+          public interface Employer {
+            abstract public void getNotification(String grad);
+          }
+        </code>
+    </pre>
+    <pre rel='java'>
+      <p>An Implementation of Observer</p>
+      <code class='java'>
+        //this is an observer
+
+        public class HeadHunter implements Employer {
+        
+          @Override
+          public void getNotification(String s) {
+            System.out.println("Headhunter notified about the availablity of : "+s);
+        
+          }
+        
+        }
+      </code>
+  </pre>
+  <pre rel='java'>
+    <p>Another Observer</p>
+    <code class='java'>
+      //this is another concrete observer
+      public class Recruiter implements Employer {
+      
+        @Override
+        public void getNotification(String grad) {
+          System.out.println("Recruiter notified about the availability of "+grad);
+      
+        }
+      
+      }
+    </code>
+</pre>
+<pre rel='java'>
+  <p>The Object to be observed on</p>
+  <code class='java'>
+    import java.util.ArrayList;
+    import java.util.Observer;
+    
+    // this is the subject of the application
+    public class UnemployedCSGraduates {
+      ArrayList<NewGrad> listOfGrads = new ArrayList<NewGrad>(); //a list of all new Grads
+      ArrayList<Employer> observerCollection = new ArrayList<Employer>(); // the collection of all observers, i.e. employers looking for new cs grads in this context
+      public UnemployedCSGraduates() {
+        listOfGrads.add(new NewGrad("Carter", 50));
+        listOfGrads.add(new NewGrad("Bob", 55));
+        listOfGrads.add(new NewGrad("Lin", 90));
+        // and so on
+      }
+      
+      public void registerObserver(Employer ob) {
+        observerCollection.add(ob);
+      }
+      
+      public void unregisterObserver(Employer ob) {
+        observerCollection.remove(ob);
+      }
+      
+      public void notifyObserver() {
+        for(Employer ob : observerCollection) {
+          for(NewGrad n : listOfGrads) {
+            ob.getNotification(n.getName());
+          }
+        }
+      }
+      
+      class NewGrad{
+        String name;
+        int mark;
+        public NewGrad(String n, int i) {
+          this.name = n;
+          this.mark = i;
+        }
+        public String getName() {
+          return name;
+        }
+      }
+    }
+  </code>
+</pre>
+      </div>
+      <div class="modal-section" id="observerSlide">
+        <h4 class="modal-header">Relevant PDF pages</h4>
+        . . .
+      </div>
+      <a class="card-button" href="#observerDiagram">Back to top</a>
+    </div>
+  </div>
+</div>   
+
+            <!-- State -->
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">State</h5>
+                  <p class="card-text">
+                    Allows an object to change behaviour based on its state
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="state" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+<!--State Modal-->
+<div class="modal-frame" id="stateModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <div name="redirection top bar">
+      <a href="#stateDiagram" class="modal-btn btn btn-sm btn-dark"
+        >UML Diagram</a
+      >
+      <a href="#stateCode" class="modal-btn btn btn-sm btn-info"
+        >Code Example</a
+      >
+      <a href="#stateSlide" class="modal-btn btn btn-sm btn-primary"
+        >Relevant Slides</a
+      >
+    </div>
+    <h2 style="padding: 5%;">State</h2>
+    <div>
+      This is a behavioural design pattern. Allows an object to change behaviour based on its state, easier to add state and support additional behaviour, removes the object's dependency on if-else structures, improves cohesion, possible memory issues as the code grows with more states.
+      <div class='modal-section' id="stateDiagram">
+        <h4 class='modal-header'>Diagram</h4>
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/State-Design-Pattern-Diagram.png" alt="state diagram">
+      </div>
+      <div class="modal-section" id="stateCode">
+        <h4 class="modal-header">Code Example</h4>
+        <pre rel='java'>
+          <p>Client Class</p>
+          <code class='java'>
+            public class Client {
+
+              public static void main(String [] args) {
+                Context context = new Context();
+                context.alert();
+                context.setAlert(new PresidentialAlert());
+                context.alert();
+              }
+            }
+          </code>
+      </pre>
+      <pre rel='java'>
+        <p>Alert Interface</p>
+        <code class='java'>
+          public interface GovAlertState {
+            abstract public  void alert();
+          }
+          
+        </code>
+    </pre>
+    <pre rel='java'>
+      <p>Context Class</p>
+      <code class='java'>
+        // Context: part of the state object, connected through weak aggregation
+        public class Context {
+          public GovAlertState alert;
+          
+          public Context() {
+            alert = new AmberAlert();
+          }
+          
+          public void setAlert(GovAlertState newAlert) {
+            this.alert = newAlert;
+          }
+          
+          //alerts are accessed through the context	 i.e. handled through the context
+          public void alert() {
+            this.alert.alert();
+          }
+        }
+      </code>
+  </pre>
+  <pre rel='java'>
+    <p>A Concrete State</p>
+    <code class='java'>
+      //concrete implementation of the state
+      public class AmberAlert implements GovAlertState{
+      
+        @Override
+        public void alert() {
+          System.out.println("Sending out Amber Alert on Child Abduction");
+        }
+      
+      }
+    </code>
+</pre>
+<pre rel='java'>
+  <p>Another Concrete State</p>
+  <code class='java'>
+    //concrete implementation of the state
+    public class PresidentialAlert implements GovAlertState {
+    
+      @Override
+      public void alert() {
+        
+        System.out.println("Sending out Presidential Alert");
+      }
+    
+    }
+  </code>
+</pre>
+      </div>
+      <div class="modal-section" id="stateSlide">
+        <h4 class="modal-header">Relevant PDF pages</h4>
+        . . .
+      </div>
+      <a class="card-button" href="#stateDiagram">Back to top</a>
+    </div>
+  </div>
+</div>  
+            <!-- Strategy -->
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Strategy</h5>
+                  <p class="card-text">
+                    Client program and a family of algorithms can be called independently; the family of algorithms share a common interface
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="strategy" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+<!--Strategy Modal-->
+<div class="modal-frame" id="strategyModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <div name="redirection top bar">
+      <a href="#strategyDiagram" class="modal-btn btn btn-sm btn-dark"
+        >UML Diagram</a
+      >
+      <a href="#strategyCode" class="modal-btn btn btn-sm btn-info"
+        >Code Example</a
+      >
+      <a href="#strategySlide" class="modal-btn btn btn-sm btn-primary"
+        >Relevant Slides</a
+      >
+    </div>
+    <h2 style="padding: 5%;">Strategy</h2>
+    <div>
+      This is a behavioural design pattern. Client program and a family of algorithms can be called independently; the family of algorithms share a common interface, allows changing code used by client dynamically at runtime, flexibility and code reuse, Inflexible strategy interface.
+      <div class="modal-section" id="strategyDiagram">
+        <h4 class="modal-header">Diagram</h4>
+        <img src="https://www.dofactory.com/images/diagrams/net/strategy.gif" alt="strategyDiagram">
+      </div>
+      <div class="modal-section" id="strategyCode">
+        <h4 class="modal-header">Code Example</h4>
+        <pre rel='java'>
+          <p>The Client (main) Class</p>
+          <code class='java'>
+            public class PokemonGame {
+
+              public static void main(String [] args) {
+                SuperMove thunderbolt = new ThunderBolt();
+                SuperSupportMove taunt = new Taunt();
+                Pokemon pikachu = new Pikachu(thunderbolt, taunt);
+                
+                pikachu.defaultMove();
+                pikachu.defaultSupportMove();
+                pikachu.superMove();
+                pikachu.superSupportMove();
+                pikachu.setSuperMove(new FireBlast());
+                pikachu.setSuperSupportMove(new SwordDance());
+                
+                pikachu.superMove();
+                pikachu.superSupportMove();
+              }
+            }
+          </code>
+      </pre>
+      <pre rel='java'>
+        <p>The Pokemon Class</p>
+        <code class='java'>
+          //using pokemon to demonstrate strategy design pattern
+
+          // every pokemon has default 2 moves and as they level up, they learn moves 3 and 4, which are interchangeable 
+          public class Pokemon {
+            SuperMove supermove;
+            SuperSupportMove supersupportmove;
+            
+            public Pokemon(SuperMove sm, SuperSupportMove ssm) {
+              supermove = sm;
+              supersupportmove = ssm;
+            }
+            
+            public void defaultMove() {
+              System.out.println("Used quick attack");
+            }
+            public void defaultSupportMove() {
+              System.out.println("Used tail whip!");
+            }
+            public void superMove() {
+              supermove.useMove();
+            }
+            public void superSupportMove() {
+              supersupportmove.useMove();
+            }
+            
+            public void setSuperMove(SuperMove sm) {
+              this.supermove = sm;
+            }
+            public void setSuperSupportMove(SuperSupportMove ssm) {
+              this.supersupportmove = ssm;
+            }
+          }
+        </code>
+    </pre>
+    <pre rel='java'>
+      <p>A SuperMove Interface (A strategy)</p>
+      <code class='java'>
+        public interface SuperMove {
+          public void useMove();
+        }
+        
+      </code>
+  </pre>
+  <pre rel='java'>
+    <p>A SuperSupportMove Interface (Another Strategy)</p>
+    <code class='java'>
+      public interface SuperSupportMove {
+        public void useMove();
+      }
+      
+    </code>
+</pre>
+
+<pre rel='java'>
+  <p>Pikachu (An implementation of Pokemon)</p>
+  <code class='java'>
+    public class Pikachu extends Pokemon{
+
+      public Pikachu(SuperMove sm, SuperSupportMove ssm) {
+        super(sm, ssm);
+        whichPoke();
+      }
+    
+      public void whichPoke() {
+        System.out.println("Pikachu: ");
+      }
+    }
+    
+  </code>
+</pre>
+<pre rel='java'>
+  <p>A Concrete Strategy</p>
+  <code class='java'>
+    public class FireBlast implements SuperMove {
+
+      @Override
+      public void useMove() {
+        System.out.println("Used Fire Blast!");
+    
+      }
+    }
+  </code>
+</pre>
+<pre rel='java'>
+  <p>Another Concrete Strategy</p>
+  <code class='java'>
+    public class ThunderBolt implements SuperMove {
+
+      @Override
+      public void useMove() {
+        System.out.println("Used Thunderbolt!");
+      }
+    }
+    
+  </code>
+</pre>
+
+<pre rel='java'>
+  <p>Another Concrete Strategy</p>
+  <code class='java'>
+    public class Taunt implements SuperSupportMove {
+
+      @Override
+      public void useMove() {
+        System.out.println("Used Taunt!");
+    
+      }
+    }
+  </code>
+</pre>
+<pre rel='java'>
+  <p>Last one...</p>
+  <code class='java'>
+    public class SwordDance implements SuperSupportMove {
+
+      @Override
+      public void useMove() {
+        System.out.println("Used Swords' Dance!");
+    
+      }
+    }
+  </code>
+</pre>
+
+      </div>
+      <div class="modal-section" id="strategySlide">
+        <h4 class="modal-header">Relevant PDF pages</h4>
+        . . .
+      </div>
+      <a class="card-button" href="#strategyDiagram">Back to top</a>
+    </div>
+  </div>
+</div>   
+            <!-- Visitor -->
+            <div class="col-auto mb-4">
+              <div class="card shadow p-3 mb-5">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">Visitor</h5>
+                  <p class="card-text">
+                    Centralize operations on an object structure to allow polymorphism and vary independently
+                  </p>
+                  <div class="text-center mt-auto">
+                    <a class="card-button details mt-auto" href="#" class="card-link" id="visitor" >Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Visitor Modal-->
+<div class="modal-frame" id="visitorModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <div name="redirection top bar">
+      <a href="#visitorDiagram" class="modal-btn btn btn-sm btn-dark"
+        >UML Diagram</a
+      >
+      <a href="#visitorCode" class="modal-btn btn btn-sm btn-info"
+        >Code Example</a
+      >
+      <a href="#visitorSlide" class="modal-btn btn btn-sm btn-primary"
+        >Relevant Slides</a
+      >
+    </div>
+    <h2 style="padding: 5%;">Visitor</h2>
+    <div>
+      This is a behavioural design pattern. Centralize operations on an object structure to allow polymorphism and vary independently, flexibility between visitor and object, localized functionality, circular dependency.
+      <div class="modal-section" id="visitorDiagram">
+        <h4 class="modal-header">Diagram</h4>
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/Visitor-Design-Pattern-Diagram.png" alt="visitor Diagram">
+      </div>
+      <div class="modal-section" id="visitorCode">
+        <h4 class="modal-header">Code Example</h4>
+        <pre rel='java'>
+          <p>Client Class</p>
+          <code class='java'>
+            //our purpose is to calculate to cost of visiting all the shops
+            public class Client {
+            
+              public static void main(String [] args) {
+                int cost = 0;
+                Shop [] luxuryBrandItems = new Shop [] {
+                    new Chanel("Medium Quilted Boy Flap Bag", 5500), new Chanel("Small Quilted Boy Flap Bag", 4600), new LV("Monogram Canvas Speedy Bandouliere 40 Bag", 1490)
+                };
+                
+                GirlFriend gf = new GirlFriend();
+                for(Shop s: luxuryBrandItems) {
+                  cost += s.accept(gf);
+                }
+                System.out.println("Total cost of the trip is: $"+cost);
+              }
+            } 
+          </code>
+      </pre>
+      <pre rel='java'>
+        <p>Visitor Interface</p>
+        <code class='java'>
+          //this is the visitor interface
+          public interface Visitor {
+          
+            public int visit(LV lv);
+            public int visit(Chanel chanel);
+          }
+        </code>
+    </pre>
+    <pre rel='java'>
+      <p>Concrete Visitor</p>
+      <code class='java'>
+        //a concrete implementation of visitor
+        public class GirlFriend implements Visitor {
+        
+        
+          @Override
+          public int visit(LV lv) {
+            System.out.println("Purchased: "+lv.getItem()+" and it costed $"+lv.getPrice());
+            return lv.getPrice();
+          }
+        
+          @Override
+          public int visit(Chanel chanel) {
+            System.out.println("Purchased: "+chanel.getBag()+" and it costed $"+chanel.getPrice());
+            return chanel.getPrice();
+          }
+        }
+      </code>
+  </pre>
+  <pre rel='java'>
+    <p>Shop Interface, to be visited</p>
+    <code class='java'>
+      //this is the elements interface
+      public interface Shop {
+      
+        public int accept(Visitor visitor);
+      }      
+    </code>
+</pre>
+<pre rel='java'>
+  <p>Concrete Shop</p>
+  <code class='java'>
+    //a concrete implementation of shop
+    public class LV implements Shop{
+    
+      private String item;
+      private int price;
+      
+      public LV(String item, int price) {
+        this.item = item;
+        this.price = price;
+      }
+      
+      public String getItem() {
+        return item;
+      }
+      public int getPrice() {
+        return price;
+      }
+      @Override
+      public int accept(Visitor visitor) {
+        return visitor.visit(this);
+        
+      }
+    }
+  </code>
+</pre>
+<pre rel='java'>
+  <p>Another Concrete Shop</p>
+  <code class='java'>
+    //a concrete implementation of shop
+    public class Chanel implements Shop {
+    
+      private String bag;
+      private int price;
+      
+      public Chanel(String itemName, int price) {
+        this.bag = itemName;
+        this.price = price;
+      }
+      
+      public String getBag() {
+        return bag;
+      }
+      public int getPrice() {
+        return price;
+      }
+      @Override
+      public int accept(Visitor visitor) {
+        return visitor.visit(this);
+      }
+    
+    }
+  </code>
+</pre>
+      </div>
+      <div class="modal-section" id="visitorSlide">
+        <h4 class="modal-header">Relevant PDF pages</h4>
+        . . .
+      </div>
+      <a class="card-button" href="#visitorDiagram">Back to top</a>
+    </div>
+  </div>
+</div>      
+
+          </div>
+        </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Linking Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--Javascript Links-->
+    <script type="text/javascript" src="js/smoothLoad.js"></script>
+    <script type="text/javascript" src="js/designPatterns.js"></script>
+  </body>
+</html>
